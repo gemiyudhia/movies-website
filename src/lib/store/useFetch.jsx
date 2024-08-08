@@ -3,19 +3,32 @@ import { create } from "zustand";
 
 export const useFetch = create((set) => ({
   data: {
-    movie: { popular: [], now_playing: [] },
+    movie: { popular: [], now_playing: [], top_rated: [], upcoming: [] },
     person: { popular: [] },
-    tv: { popular: [] },
+    tv: { popular: [], airing_today: [], on_the_air: [], top_rated: [] },
   },
   isLoading: {
-    movie: { popular: false, now_playing: false },
+    movie: {
+      popular: false,
+      now_playing: false,
+      top_rated: false,
+      upcoming: false,
+    },
     person: { popular: false },
-    tv: { popular: false },
+    tv: {
+      popular: false,
+      airing_today: false,
+      on_the_air: false,
+      top_rated: false,
+    },
   },
   isError: null,
   fetchMovies: async (type, endPoint, limit = null) => {
     set((state) => ({
-      isLoading: { ...state.isLoading, [type]: { ...state.isLoading[type], [endPoint]: true } },
+      isLoading: {
+        ...state.isLoading,
+        [type]: { ...state.isLoading[type], [endPoint]: true },
+      },
       isError: null, // Reset error state sebelum memulai fetch baru
     }));
 
@@ -33,15 +46,24 @@ export const useFetch = create((set) => ({
 
       // Set state dengan hasil fetch
       set((state) => ({
-        data: { ...state.data, [type]: { ...state.data[type], [endPoint]: result } },
-        isLoading: { ...state.isLoading, [type]: { ...state.isLoading[type], [endPoint]: false } },
+        data: {
+          ...state.data,
+          [type]: { ...state.data[type], [endPoint]: result },
+        },
+        isLoading: {
+          ...state.isLoading,
+          [type]: { ...state.isLoading[type], [endPoint]: false },
+        },
         isError: null, // Pastikan tidak ada error setelah fetch berhasil
       }));
     } catch (error) {
       // Set error state jika terjadi error
       set((state) => ({
         isError: error.message || "Something went wrong",
-        isLoading: { ...state.isLoading, [type]: { ...state.isLoading[type], [endPoint]: false } },
+        isLoading: {
+          ...state.isLoading,
+          [type]: { ...state.isLoading[type], [endPoint]: false },
+        },
       }));
     }
   },

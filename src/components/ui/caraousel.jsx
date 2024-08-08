@@ -6,6 +6,8 @@ import { useFetch } from "@/lib/store/useFetch";
 import { NextArrow, PrevArrow } from "./arrows";
 import { Button } from "./button";
 import ReusableDialog from "../Fragments/ReuseableDialog";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Carousel = () => {
   const {
@@ -57,32 +59,36 @@ const Carousel = () => {
         <h1 className="mb-3 mt-6 text-3xl font-bold md:mt-0">
           Movie Now Playing 🎬
         </h1>
-        <Slider {...settings}>
-          {movies?.map((movie) => (
-            <div key={movie.id} className="relative w-full">
-              <img
-                src={`${import.meta.env.VITE_REACT_BASE_IMAGE_URL}${movie.backdrop_path}`}
-                alt={movie.title}
-                className="min-h-screen w-full bg-center object-cover object-center brightness-50 md:rounded-xl"
-              />
-              <div className="absolute bottom-20 left-10 space-y-3 text-white">
-                <h1 className="line-clamp-2 text-3xl font-bold tracking-tight lg:text-4xl">
-                  {movie.title}
-                </h1>
-                <p className="text-lg font-medium">{movie.release_date}</p>
-                <p className="font-medium">Popularity: {movie.popularity}</p>
-                <div className="space-y-3">
-                  <Button
-                    onClick={() => handleViewDetails(movie)}
-                    className="mt-2 bg-blue-700 py-4 font-bold hover:bg-blue-500 md:w-72 lg:w-80"
-                  >
-                    View Details
-                  </Button>
+        {isLoading ? (
+          <Skeleton height={500} className="w-full md:rounded-xl" />
+        ) : (
+          <Slider {...settings}>
+            {movies?.map((movie) => (
+              <div key={movie.id} className="relative w-full">
+                <img
+                  src={`${import.meta.env.VITE_REACT_BASE_IMAGE_URL}${movie.backdrop_path}`}
+                  alt={movie.title}
+                  className="min-h-screen w-full bg-center object-cover object-center brightness-50 md:rounded-xl"
+                />
+                <div className="absolute bottom-20 left-10 space-y-3 text-white">
+                  <h1 className="line-clamp-2 text-3xl font-bold tracking-tight lg:text-4xl">
+                    {movie.title}
+                  </h1>
+                  <p className="text-lg font-medium">{movie.release_date}</p>
+                  <p className="font-medium">Popularity: {movie.popularity}</p>
+                  <div className="space-y-3">
+                    <Button
+                      onClick={() => handleViewDetails(movie)}
+                      className="mt-2 bg-blue-700 py-4 font-bold hover:bg-blue-500 md:w-72 lg:w-80"
+                    >
+                      View Details
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        )}
       </div>
       {selectedItem && (
         <ReusableDialog

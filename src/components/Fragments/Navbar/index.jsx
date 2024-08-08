@@ -7,8 +7,6 @@ import {
   MenubarMenu,
   MenubarTrigger,
 } from "@/components/ui/menubar";
-import { Input } from "@/components/ui/input";
-import { FaMagnifyingGlass } from "react-icons/fa6";
 import Hamburger from "@/components/ui/hamburger";
 import SideBar from "../SideBar";
 import SearchForm from "./SearchForm";
@@ -42,7 +40,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link
               to="/"
-              className={`order-3 ml-4 flex font-poppins text-xl font-bold text-slate-800 md:order-1 md:text-2xl ${colorChange ? "text-white" : ""}`}
+              className={`font-poppins order-3 ml-4 flex text-xl font-bold text-slate-800 md:order-1 md:text-2xl ${colorChange ? "text-white" : ""}`}
             >
               MyMovieList <span className="inline-flex">🔥</span>
             </Link>
@@ -54,7 +52,7 @@ const Navbar = () => {
             <div className="ml-5 hidden md:order-2 md:block">
               <Menubar className="bg-transparent">
                 <MenubarMenu>
-                  <MenubarTrigger className="cursor-pointer font-poppins font-semibold text-slate-800">
+                  <MenubarTrigger className="font-poppins cursor-pointer font-semibold text-slate-800">
                     <p
                       className={`${colorChange ? "text-white" : ""} hover:text-opacity-85`}
                     >
@@ -63,22 +61,22 @@ const Navbar = () => {
                   </MenubarTrigger>
                   <MenubarContent>
                     <MenubarItem className="cursor-pointer hover:bg-transparent">
-                      Popular
+                      <Link to="/movie-popular">Popular</Link>
                     </MenubarItem>
                     <MenubarItem className="cursor-pointer">
-                      Now Playing
+                      <Link to="/movie-now-playing">Now Playing</Link>
                     </MenubarItem>
                     <MenubarItem className="cursor-pointer">
-                      Top Rated
+                      <Link to="/movie-top-rated">Top Rated</Link>
                     </MenubarItem>
                     <MenubarItem className="cursor-pointer">
-                      Up Coming
+                      <Link to="/movie-up-coming">Up Coming</Link>
                     </MenubarItem>
                   </MenubarContent>
                 </MenubarMenu>
 
                 <MenubarMenu>
-                  <MenubarTrigger className="cursor-pointer font-poppins font-semibold text-slate-800">
+                  <MenubarTrigger className="font-poppins cursor-pointer font-semibold text-slate-800">
                     <p
                       className={`${colorChange ? "text-white" : ""} hover:text-opacity-85`}
                     >
@@ -87,22 +85,22 @@ const Navbar = () => {
                   </MenubarTrigger>
                   <MenubarContent>
                     <MenubarItem className="cursor-pointer">
-                      Airing Today
+                      <Link to="/tv-airing">Airing Today</Link>
                     </MenubarItem>
                     <MenubarItem className="cursor-pointer">
-                      On The Air
+                      <Link to="/tv-on-the-air">On The Air</Link>
                     </MenubarItem>
                     <MenubarItem className="cursor-pointer">
-                      Popular
+                      <Link to="/tv-popular">Popular</Link>
                     </MenubarItem>
                     <MenubarItem className="cursor-pointer">
-                      Top Rated
+                      <Link to="/tv-top-rated">Top Rated</Link>
                     </MenubarItem>
                   </MenubarContent>
                 </MenubarMenu>
 
                 <MenubarMenu>
-                  <MenubarTrigger className="cursor-pointer font-poppins font-semibold text-slate-800">
+                  <MenubarTrigger className="font-poppins cursor-pointer font-semibold text-slate-800">
                     <p
                       className={`${colorChange ? "text-white" : ""} hover:text-opacity-85`}
                     >
@@ -111,7 +109,7 @@ const Navbar = () => {
                   </MenubarTrigger>
                   <MenubarContent>
                     <MenubarItem className="cursor-pointer">
-                      Popular
+                      <Link to="/people-popular">Popular</Link>
                     </MenubarItem>
                   </MenubarContent>
                 </MenubarMenu>
