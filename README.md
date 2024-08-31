@@ -1,4 +1,6 @@
- Website
+Use movie API public: https://developer.themoviedb.org/reference/intro/getting-started
+
+Website
 DEMO : https://gemiyudhia.github.io/movies-website/
 
 Feature
